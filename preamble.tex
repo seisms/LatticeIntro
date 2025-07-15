@@ -1,0 +1,57 @@
+\documentclass{beamer}
+
+\usepackage{subcaption, float}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{svg}
+\usepackage[spanish]{babel}
+
+%%%%%%%%%% Font %%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{amssymb, amsfonts}
+\usepackage{amsbsy}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%% Math %%%%%%%%%%%
+% Useful tools like equation environments, alignment, etc.
+\usepackage{amsthm, amsmath}
+
+% Para cambiar a los símbolos "tradicionales" de
+% de los naturales reales etc. se tiene que cambiar
+% \mathbf por \mathbb. Me gusta más dejarlos en negrita
+% porque encuentro que es más legible en presentaciones,
+% pero si quieren lo cambian.
+\newcommand{\ZZ}{\mathbf{Z}}
+\newcommand{\QQ}{\mathbf{Q}}
+\newcommand{\RR}{\mathbf{R}}
+\newcommand{\MM}{\mathbf{M}}
+\newcommand{\NN}{\mathbf{N}}
+\newcommand{\latt}{\mathcal{L}(\mathbf{B})}       % Para escribir menos
+\newcommand{\lattprime}{\mathcal{L}(\mathbf{B'})} % Para escribir menos
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%% Beamer specific %%%%%%
+\title{Introducción a Reticulados}
+% Pongan sus apellidos maternos en ...
+\author{Leandro Aballay Henríquez, Diego Cuevas Alarcón, Matías Olivares Morales, Álvaro Quezada Inostroza, Guillermo Pereira Bula}
+\institute{Departamento de Matemática y Ciencia de la Computación\\}
+\date{17 de julio de 2025}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Contenidos}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\uselanguage{Spanish}
+\languagepath{Spanish}
+\newcommand{\adv}[1]{ {\color{blue} #1} }
+
+
+\usetheme{default}
+\usecolortheme{default}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%

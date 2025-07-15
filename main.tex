@@ -1,0 +1,103 @@
+% Aquí definí algunos comandos personalizados.
+% Los más importantes son: \latt que escribe L(B) y
+% \lattprime -> L(B').
+% Otros son \ZZ, \RR, \QQ etc. que escriben los enteros, reales
+% etc.
+\input{preamble}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Contenidos}
+\tableofcontents
+\end{frame}
+
+\section{Marco teórico}
+
+% Preliminares acá? Definir la generalización de norma y conjunto
+% abierto? Podría ayudar cuando hablemos de mínimos sucesivos.
+
+% Por ahora estoy poniendo las cosas nomas. De ahí les podemos poner titulo
+% a los frames o q se yo, refinar la presentacion etc.
+\begin{frame}
+\begin{definition}[Reticulado]
+Sea $\RR^m$ el espacio euclidiano $m$-dimensional. Un reticulado en $\RR^m$ es el conjunto
+\[
+\mathcal L(\mathbf{b}_1, \dots, \mathbf{b}_n) = \left\{\sum_{i = 1}^n x_i \mathbf{b}_i : x_i  \in \ZZ\right\}
+\]
+De combinaciones lineales enteras de $n$ vectores linealmente independientes $\mathbf{b}_1, ..., \mathbf{b}_n$ en $\RR^m$ con $m \geq n$.
+\end{definition}
+Llamamos a los enteros $m$ y $n$ como {\it dimensión} y {\it rango} respectivamente.
+\end{frame}
+
+\begin{frame}
+\only<1>{Los vectores $\mathbf{b}_1, ..., \mathbf{b}_n$ son la {\it} base del reticulado. Podemos representarlos como una matriz $\RR^{m\times n}$ donde los vectores base ``se ven'' como columnas
+
+\[
+\mathbf{B} = \begin{bmatrix}
+    \mathbf{b}_1 & \dots & \mathbf{b}_n
+\end{bmatrix}
+\]
+
+De esta forma compactamos la primera definición como $\mathcal{L}(\mathbf B) = \left\{\mathbf{Bx} : \mathbf x \in \ZZ^n\right\}$. Un reticulado tiene muchas bases distintas.
+}
+\only<2>{
+\begin{figure}
+    
+    \centering
+    
+    \begin{subfigure}{0.4\textwidth}
+        \includesvg[width=\linewidth]{figures/lattice_fig.svg}
+        \caption{Reticulado en $\mathbf R^2$.}
+        \label{fig:simple_lattice}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.4\textwidth}
+        \includesvg[width=\linewidth]{figures/lattice_bprime.svg}
+        \caption{Mismo reticulado, distinta base.}
+        \label{fig:same_basis}
+    \end{subfigure}
+    
+\end{figure}
+}
+
+\end{frame}
+
+% La corta demostración
+\begin{frame}
+\only<1>{
+\begin{theorem}
+Sean $\mathbf B$ y $\mathbf B'$ dos bases $\RR^{m \times n}$. $\mathbf B$ y $\mathbf B'$ son equivalentes si y solo si existe una matriz unimodular $\mathbf U \in \ZZ^{n \times n}$ tal que $\mathbf B = \mathbf {B' U}$
+\end{theorem}
+}
+\begin{proof}
+ \only<1>{$(\impliedby)$ Tenemos que $\mathbf B = \mathbf{B'U}$ y $\det(\mathbf U) = \pm 1 \neq 0$, entonces $\mathbf U$ es invertible por alguna matriz $\mathbf U'$ tal que $\mathbf{UU'} = \mathbf I$. En particular, de esto podemos concluir que $\mathbf{B'} = \mathbf{BU'}$. Sigue inmediatemente que $\latt \subseteq \lattprime$ y $\lattprime \subseteq \latt$. Por lo tanto $\latt = \lattprime$ y ambas bases son equivalentes.}
+
+ \only<2>{$(\implies)$ Si $\mathbf B$ y $\mathbf B'$ son equivalentes entonces generan el mismo reticulado. Es decir, existen $\mathbf M$ y $\mathbf M' \in \ZZ^{n\times n}$  tal que $\mathbf B = \mathbf{B'M'}$ y $\mathbf B' = \mathbf{BM}$.
+ \[
+ \mathbf B = \mathbf{BMM'} \implies \mathbf{B}(\mathbf{I - MM'}) = \mathbf 0
+ \]
+ Sabemos que $\mathbf B$ es linealmente independiente. Por lo tanto $(\mathbf{I- MM'}) = \mathbf 0$. Luego 
+\[ 
+ \det(\mathbf{MM'}) = \det(\mathbf M) \cdot \det(\mathbf M') = \det(\mathbf{I}) = 1
+ \]
+
+Como $\mathbf M$ y $\mathbf M'$ están compuestas de enteros, $\det(\mathbf M)$ y $\det(\mathbf{M'})$ deben ser enteros. Como la multiplicación de ambos determinantes debe ser uno, entonces solo pueden ser $1$ o $-1$. Por lo tanto $\mathbf M$ y $\mathbf M'$ son unimodulares
+ }
+ \alt<2>{\qedhere}{\phantom\qedhere}
+\end{proof}
+    
+\end{frame}
+
+\section{Complejidad}
+
+\section{Algunos problemas de reticulados en la criptografía}
+
+\begin{frame}
+    \begin{center}
+        {\huge \bf Preguntas}
+    \end{center}
+\end{frame}
+
+\end{document}
