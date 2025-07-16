@@ -13,23 +13,31 @@
 \tableofcontents
 \end{frame}
 
-% Hola desde vim!
-\section{Marco teórico}
-
 % Preliminares acá? Definir la generalización de norma y conjunto
 % abierto? Podría ayudar cuando hablemos de mínimos sucesivos.
+\section{Preliminares}
+\begin{frame}{Preliminares}
+Denotamos un vector en algún dominio como $\mathbf x$, y los componentes de este vector $v_i$ para el $i$-ésimo componente. Asimismo, $\mathbf M$ denota una matriz.
 
+A menos que sea especificado, la norma $||\cdot ||: \RR^n \to \RR$ denota la norma $l_2$ (o norma Euclidiana).
+
+\end{frame}
+\section{Marco teórico}
+
+
+
+\subsection{Definiciones básicas}
 % Por ahora estoy poniendo las cosas nomas. De ahí les podemos poner titulo
 % a los frames o q se yo, refinar la presentacion etc.
-\begin{frame}
-\begin{definition}[Reticulado]
+\begin{frame}{Reticulado}
+\begin{definition}
 Sea $\RR^m$ el espacio euclidiano $m$-dimensional. Un reticulado en $\RR^m$ es el conjunto
 \[
 \mathcal L(\mathbf{b}_1, \dots, \mathbf{b}_n) = \left\{\sum_{i = 1}^n x_i \mathbf{b}_i : x_i  \in \ZZ\right\}
 \]
 De combinaciones lineales enteras de $n$ vectores linealmente independientes $\mathbf{b}_1, ..., \mathbf{b}_n$ en $\RR^m$ con $m \geq n$.
 \end{definition}
-Llamamos a los enteros $m$ y $n$ como {\it dimensión} y {\it rango} respectivamente.
+Llamamos a los enteros $m$ y $n$ como {\it dimensión} y {\it rango} respectivamente. Si $m = n$, es decir, si el número de vectores base es igual a la dimensión del espacio, entonces diremos que $\latt$ es de rango completo, o dimensión completa.
 \end{frame}
 
 \begin{frame}
@@ -41,7 +49,9 @@ Llamamos a los enteros $m$ y $n$ como {\it dimensión} y {\it rango} respectivam
 \end{bmatrix}
 \]
 
-De esta forma compactamos la primera definición como $\mathcal{L}(\mathbf B) = \left\{\mathbf{Bx} : \mathbf x \in \ZZ^n\right\}$. Un reticulado tiene muchas bases distintas.
+De esta forma compactamos la primera definición como $\mathcal{L}(\mathbf B) = \left\{\mathbf{Bx} : \mathbf x \in \ZZ^n\right\}$. 
+
+Un reticulado tiene muchas bases distintas. Dos bases $\mathbf B$ y $\mathbf B'$ que generan el mismo reticulado se dicen {\it equivalentes}.
 }
 \only<2>{
 \begin{figure}
@@ -50,19 +60,56 @@ De esta forma compactamos la primera definición como $\mathcal{L}(\mathbf B) = 
     
     \begin{subfigure}{0.4\textwidth}
         \includesvg[width=\linewidth]{figures/lattice_fig.svg}
-        \caption{Reticulado en $\mathbf R^2$.}
+        \caption{$\mathbf B = [\mathbf b_1\quad \mathbf b_2]$}
         \label{fig:simple_lattice}
     \end{subfigure}
     \hfill
     \begin{subfigure}{0.4\textwidth}
         \includesvg[width=\linewidth]{figures/lattice_bprime.svg}
-        \caption{Mismo reticulado, distinta base.}
+        \caption{$\mathbf B' = [\mathbf b'_1\quad \mathbf b'_2]$}
         \label{fig:same_basis}
     \end{subfigure}
-    
+    \caption{Dos bases equivalentes.}
 \end{figure}
 }
+\end{frame}
 
+\begin{frame}{Amplitud}
+La {\it amplitud} (o {\it span}) de la base de un reticulado se define como el conjunto de todas las combinaciones lineales {\it reales} de los vectores base:
+\[
+\text{span}(\mathbf B) = \left\{\mathbf{Bx} : \mathbf x \in \RR^n \right\}
+\]
+
+$\mathbf B$ es una base para $\text{span}(\mathbf{B})$ visto como un espacio vectorial. En particular, esto implica que $\text{rank}(\latt) = \text{dim}(\text{span}(\mathbf B))$. Asimismo, $\text{span}(\mathbf B) = \RR^m$ si su dimensión es $m$. De lo anterior podemos concluir que $\latt$ es de rango completo si y solo si $\text{span}(\mathbf B) = \RR^m$.
+
+\begin{remark}
+Cualquier conjunto de $n$ vectores L.I. $\mathbf B'$ del reticulado $\latt$ es una base para $\text{span}(\mathbf B)$, pero $\mathbf B'$ no es necesariamente equivalente a $\mathbf B$.
+\end{remark}
+\end{frame}
+
+\begin{frame}{Otra representación de reticulados}
+También podemos caracterizar un reticulado sin hacer uso de una base $\mathbf B$, mediante teoría de grupos. Consideremos un reticulado como un $\Lambda \subseteq \RR^m$ no vacío, y cerrado bajo la resta.
+
+\begin{proposition}
+    Un reticulado $\Lambda$ es un subgrupo aditivo discreto de $\RR^m$.
+\end{proposition}
+\begin{proof}
+    Por definición $\Lambda \subseteq \RR^m$. Luego, por el criterio de subgrupo, basta con mostrar que $\Lambda$ es cerrado bajo la inversión y la suma.
+
+    Sea $\mathbf x, \mathbf y \in \Lambda$, entonces $\mathbf 0 \in \Lambda$ porque $\mathbf x - \mathbf x \in \Lambda$. Sigue inmediatamente que $\mathbf{0 - x} = \mathbf {-x} \in \Lambda$. Por último, $\mathbf{x+y} = \mathbf x - (-\mathbf y) \in \Lambda$.
+\end{proof}
+
+Aquí, {\it discreto} significa que existe una constante real positiva $\lambda$ tal que la distancia entre dos vectores cualquiera del reticulado es, al menos, $\lambda$.
+\end{frame}
+
+\begin{frame}{Equivalencia de bases}
+La equivalencia de bases de reticulados se puede interpretar de forma geométrica. Defina el paralelepipedo semiabierto de $\mathbf B$ como el conjunto
+
+\[
+\mathcal P(\mathbf B) = \left\{ \mathbf B\mathbf x : 0 \leq x_i < 1\right\}.
+\]
+
+Sea $\mathbf B'$ una matriz de vectores L.I. de $\latt$, entonces $\mathbf B'$ es una base para $\latt$ si y solo si $\mathcal P(\mathbf B')$ no contiene ningún vector de $\latt$ además del origen.
 \end{frame}
 
 % La corta demostración
@@ -88,8 +135,16 @@ Como $\mathbf M$ y $\mathbf M'$ están compuestas de enteros, $\det(\mathbf M)$ 
  }
  \alt<2>{\qedhere}{\phantom\qedhere}
 \end{proof}
-    
 \end{frame}
+
+\subsection{Determinantes}
+\begin{frame}{Determinante}
+\begin{definition}
+El determinante de un reticulado $\Lambda = \latt$ es el volumen $n$-dimensional del paralelepipedo semiabierto $\mathcal P(\mathbf B)$
+\end{definition}
+\end{frame}
+
+\subsection{Mínimo sucesivo}
 
 \section{Complejidad}
 

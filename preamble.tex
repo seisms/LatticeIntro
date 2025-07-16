@@ -16,16 +16,22 @@
 % Useful tools like equation environments, alignment, etc.
 \usepackage{amsthm, amsmath}
 
+\theoremstyle{remark}
+\newtheorem*{remark}{Observación}
+
+\theoremstyle{plain}
+\newtheorem{proposition}{Proposición}
+
 % Para cambiar a los símbolos "tradicionales" de
 % de los naturales reales etc. se tiene que cambiar
 % \mathbf por \mathbb. Me gusta más dejarlos en negrita
 % porque encuentro que es más legible en presentaciones,
 % pero si quieren lo cambian.
-\newcommand{\ZZ}{\mathbf{Z}}
-\newcommand{\QQ}{\mathbf{Q}}
-\newcommand{\RR}{\mathbf{R}}
-\newcommand{\MM}{\mathbf{M}}
-\newcommand{\NN}{\mathbf{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\MM}{\mathbb{M}}
+\newcommand{\NN}{\mathbb{N}}
 \newcommand{\latt}{\mathcal{L}(\mathbf{B})}       % Para escribir menos
 \newcommand{\lattprime}{\mathcal{L}(\mathbf{B'})} % Para escribir menos
 
