@@ -144,7 +144,24 @@ El determinante de un reticulado $\Lambda = \latt$ es el volumen $n$-dimensional
 \end{definition}
 \end{frame}
 
-\subsection{Mínimo sucesivo}
+
+\subsection{Mínimos sucesivos}
+\begin{frame}{Mínimos sucesivos}
+    \begin{definition}
+        Sea $\mathcal{B}_m(\mathbf{0},r) = \left\{ \mathbf{x} \in \RR^{m}: \Vert \mathbf{x} \Vert < r \right\}$ la \textbf{esfera abierta} $m$-dimensional de radio $r$ y centrada en $\mathbf{0}$.
+    \end{definition}
+    
+    \begin{definition}
+        Llamamos \textbf{mínimos sucesivos} a la sucesión de valores $\lambda_1, \dots, \lambda_n$ tal que se cumple
+        $$ 
+        \lambda_i(\Lambda) = \inf\{r: \dim(\text{span}(\Lambda \cap \mathcal{B}_m(\mathbf{0},r))) \geq i\}
+        $$
+    
+        En otras palabras, el $i$-ésimo mínimo $\lambda_i$ corresponde al radio de la esfera abierta más pequeña, centrada en el origen, que contiene $i$ vectores linealmente independientes.  
+    \end{definition}
+\end{frame}
+
+\subsection{Teorema de Minkowski}
 
 \section{Complejidad}
 
