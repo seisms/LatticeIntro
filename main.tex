@@ -242,7 +242,8 @@ Dada una base $\mathbf{B}\in \ZZ^{m\times n}$, encontrar el vector no-nulo del r
 En esta versión de optimización, solo es necesario encontrar $\|\mathbf{Bx}\|$; es decir, un valor $d$ tal que $\lambda_1(\mathbf{B}) \leq d < \gamma\lambda_1(\mathbf{B})$.
 \end{frame}
 
-\begin{frame}{SVP en dos dimensiones}
+\begin{frame}{Base reducida}
+El problema consiste en encontrar una base reducida $[a,b]$ del reticulado generado por dos vectores linealmente independientes $\textbf{a},\textbf{b} \in \mathbb{Z}^2$, tal que $||\textbf{a}'|| = \lambda_1$ y $||\textbf{b}'||= \lambda_2$, donde $\lambda_1$ y $\lambda_2$ son \textbf{mínimos sucesivos} del reticulado. 
     \begin{definition}
         Sea $[\textbf{a},\textbf{b}]$ una base de un reticulado. La base es reducida si
         \[
@@ -250,21 +251,10 @@ En esta versión de optimización, solo es necesario encontrar $\|\mathbf{Bx}\|$
         \]
         \begin{figure}
             \centering
-            \includegraphics[width=0.5\linewidth]{figures/baseReducida.png}
+            \includegraphics[width=0.30\linewidth]{figures/baseReducida.png}
             \caption{Base reducida en dos dimensiones}
         \end{figure}
     \end{definition}
-\end{frame}
-
-\begin{frame}
-    \begin{lemma}
-        Considere tres vectores en una linea, $\textbf{x}, \textbf{x}+\textbf{y}, \textbf{x}+\textbf{$\alpha$} \textbf{y}$, donde $\alpha \in (1, \infty)$. Para cualquier norma $||\cdot||$, si $||\textbf{x}|| \leq ||\textbf{x}+\textbf{y}||$ entonces $||\textbf{x}+\textbf{y}|| \leq ||\textbf{a}+\alpha \textbf{y}||$. Además, si $||\textbf{x}||<||\textbf{x}+\textbf{y}||$ entonces $||\textbf{x}+\textbf{y}||<||\textbf{x}+\alpha \textbf{y}||$.
-    \end{lemma}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.45\linewidth]{figures/lattice_pointsLine.png}
-        \caption{Tres puntos en una línea}
-    \end{figure}
 \end{frame}
 
 \begin{frame}{Algoritmo generalizado de Gauss}
@@ -282,7 +272,6 @@ Del algoritmo presentado para la reducción de base en dos dimensiones podemos d
     \item El algoritmo es de complejidad $O(n)$.
     \item El algoritmo es eficiente y exacto para encontrar el vector más corto.
     \item Es genérico respecto a la norma siempre y cuando esta pueda ser evaluada en tiempo polinomial.
-    \item Se basa en propiedades geométricas del reticulado. 
 \end{itemize}
 \end{frame}
 
