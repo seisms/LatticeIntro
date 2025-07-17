@@ -212,7 +212,6 @@ El determinante es invariante, es decir, no depende de la elección de base. Una
 
 
 \section{Algunos problemas de reticulados en la criptografía}
-\begin{frame}
 \begin{frame}{El problema del vector más cercano}
 \begin{definition}[\textit{Closest Vector Problem}, CVP]
 Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ más cercano a $\mathbf{t}$; es decir, encontrar un vector $\mathbf{x}\in \ZZ^n$ de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.
@@ -221,8 +220,8 @@ Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \
 
 \end{frame}
 
-\begin{frame}{El problema del vector más corto}
-    El problema de encontrar el vector más cercano se puede abordar mediante las siguientes tareas computacionales:\\
+\begin{frame}{El problema del vector más cercano}
+El problema de encontrar el vector más cercano se puede abordar mediante las siguientes tareas computacionales:\\
 \vspace{1em}
 \begin{itemize}
     \item \textit{Problema de Búsqueda}: Dado un reticulado entero $\latt$ y un vector objetivo $\mathbf{t}$, encontrar un vector del reticulado $\mathbf{Bx}$ tal que $\|\mathbf{Bx} - \mathbf{t}\|$ sea mínima.
