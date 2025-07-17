@@ -24,8 +24,6 @@ A menos que sea especificado, la norma $||\cdot ||: \RR^n \to \RR$ denota la nor
 \end{frame}
 \section{Marco teórico}
 
-
-
 \subsection{Definiciones básicas}
 % Por ahora estoy poniendo las cosas nomas. De ahí les podemos poner titulo
 % a los frames o q se yo, refinar la presentacion etc.
@@ -195,6 +193,17 @@ El determinante es invariante, es decir, no depende de la elección de base. Una
         \item norma $\ell_{\infty}$: \quad ${\Vert\mathbf{x}\Vert}_{\infty} = \displaystyle \lim_{p \to \infty} {\Vert\mathbf{x}\Vert}_p = \max_{i=1}^n |\mathbf{x}_i|$
     \end{itemize}
 }
+
+\only<4>{
+\begin{remark}
+    Ya que $\Lambda \leq \RR^m$, siempre existen vectores que cumplen la sucesión mínima, es decir, existen $\mathbf b_1, \dots, \mathbf b_n$ L.I. en $\Lambda$ tal que $||\mathbf b_i|| = \lambda_i$ para todo $i = 1,\dots,n$. Esto implica que el ínfimo de la definición de $\lambda_i(\Lambda)$ es un mínimo si se reemplaza $\mathcal B_m(\mathbf 0, r)$ por la esfera {\it cerrada} $\overline{\mathcal B}(\mathbf 0, r)$.
+\end{remark}
+
+Por otro lado, $\lambda_1(\Lambda)$ es el largo del vector distinto de cero más corto del reticulado, y es igual a la distancia más corta entre dos puntos distintos del reticulado. Formalmente:
+\[
+\lambda_1(\Lambda) = \min_{\mathbf x \neq \mathbf y \in \Lambda} || \mathbf x - \mathbf y|| = \min_{\mathbf x \in \Lambda \backslash \left\{\mathbf 0\right\}} ||\mathbf x||
+\]
+}
 \end{frame}
 
 \subsection{Teoremas de Minkowski}
@@ -261,25 +270,16 @@ A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad
 \end{frame}
 
 \begin{frame}{Algoritmo LLL}
-    \begin{algorithm}
-    \caption{An algorithm with caption}\label{alg:cap}
     \begin{algorithmic}
-    \Require $n \geq 0$
-    \Ensure $y = x^n$
-    \State $y \gets 1$
-    \State $X \gets x$
-    \State $N \gets n$
-    \While{$N \neq 0$}
-    \If{$N$ is even}
-        \State $X \gets X \times X$
-        \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
-    \ElsIf{$N$ is odd}
-        \State $y \gets y \times X$
-        \State $N \gets N - 1$
-    \EndIf
-    \EndWhile
+    \State \textbf{Entrada:} Reticulado con base \textbf{b$_1$, $\dots$, b$_n$} $\in \mathbb{Z}^n$
+    \State \textbf{Salida:} $\delta$-LLL base reducida de \mathcal{L}
+    \State $i \gets 10$
+    \For{$i=2$ to $n$} 
+        \For{$j = i − 1$ to $1$}
+            \State $b_i \gets b_i - c_{ij}b_$ 
+        \EndFor
+    \EndFor 
     \end{algorithmic}
-    \end{algorithm}
 \end{frame}
 
 
@@ -289,3 +289,4 @@ A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad
     \end{center}
 \end{frame}
 \end{document}
+
