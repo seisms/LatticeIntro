@@ -28,6 +28,7 @@ A menos que sea especificado, la norma $||\cdot ||: \RR^n \to \RR$ denota la nor
 % Por ahora estoy poniendo las cosas nomas. De ahí les podemos poner titulo
 % a los frames o q se yo, refinar la presentacion etc.
 \begin{frame}{Reticulado}
+\only<1>{
 \begin{definition}
 Sea $\RR^m$ el espacio euclidiano $m$-dimensional. Un reticulado en $\RR^m$ es el conjunto
 \[
@@ -36,10 +37,9 @@ Sea $\RR^m$ el espacio euclidiano $m$-dimensional. Un reticulado en $\RR^m$ es e
 De combinaciones lineales enteras de $n$ vectores linealmente independientes $\mathbf{b}_1, ..., \mathbf{b}_n$ en $\RR^m$ con $m \geq n$.
 \end{definition}
 Llamamos a los enteros $m$ y $n$ como {\it dimensión} y {\it rango} respectivamente. Si $m = n$, es decir, si el número de vectores base es igual a la dimensión del espacio, entonces diremos que $\latt$ es de rango completo, o dimensión completa.
-\end{frame}
+}
 
-\begin{frame}
-\only<1>{Los vectores $\mathbf{b}_1, ..., \mathbf{b}_n$ son la {\it} base del reticulado. Podemos representarlos como una matriz $\RR^{m\times n}$ donde los vectores base ``se ven'' como columnas
+\only<2>{Los vectores $\mathbf{b}_1, ..., \mathbf{b}_n$ son la {\it} base del reticulado. Podemos representarlos como una matriz $\RR^{m\times n}$ donde los vectores base ``se ven'' como columnas
 
 \[
 \mathbf{B} = \begin{bmatrix}
@@ -51,7 +51,7 @@ De esta forma compactamos la primera definición como $\mathcal{L}(\mathbf B) = 
 
 Un reticulado tiene muchas bases distintas. Dos bases $\mathbf B$ y $\mathbf B'$ que generan el mismo reticulado se dicen {\it equivalentes}.
 }
-\only<2>{
+\only<3>{
 \begin{figure}
     
     \centering
@@ -326,7 +326,7 @@ A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad
     \begin{algorithmic}
     \State \textbf{Entrada:} Reticulado con base \textbf{b$_1$, $\dots$, b$_n$} $\in \mathbb{Z}^n$
     \State \textbf{Salida:} $\delta$-LLL base reducida de $\mathcal{L}$
-    \State \textbf{Comienzo:} computar la ortogonalización Gram-Schmidt $b_1^*, \dots, \$
+    \State \textbf{Comienzo:} computar Gram-Schmidt $b_1^*$, $\dots$, $b_n^*$
     \For{$i=2$ to $n$} 
         \For{$j = i − 1$ to $1$}
             \State $b_i \gets b_i - c_{ij}b_ji$, donde $c_{ij} = \frac{\langle b_i, b^*_j \rangle}{\langle b^*_j,b^*_j \rangle}$ 
