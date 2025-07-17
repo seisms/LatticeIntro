@@ -13,17 +13,7 @@
 \tableofcontents
 \end{frame}
 
-% Preliminares acá? Definir la generalización de norma y conjunto
-% abierto? Podría ayudar cuando hablemos de mínimos sucesivos.
-\section{Preliminares}
-\begin{frame}{Preliminares}
-Denotamos un vector en algún dominio como $\mathbf x$, y los componentes de este vector $v_i$ para el $i$-ésimo componente. Asimismo, $\mathbf M$ denota una matriz.
-
-A menos que sea especificado, la norma $||\cdot ||: \RR^n \to \RR$ denota la norma $l_2$ (o norma Euclidiana).
-
-\end{frame}
 \section{Marco teórico}
-
 \subsection{Definiciones básicas}
 % Por ahora estoy poniendo las cosas nomas. De ahí les podemos poner titulo
 % a los frames o q se yo, refinar la presentacion etc.
@@ -151,7 +141,13 @@ Como $\mathbf M$ y $\mathbf M'$ están compuestas de enteros, $\det(\mathbf M)$ 
 El determinante de un reticulado $\Lambda = \latt$ es el volumen $n$-dimensional del paralelepípedo semiabierto $\mathcal P(\mathbf B)$.
 \end{definition}
 
-El determinante es invariante, es decir, no depende de la elección de base. Una forma de computar $\text{det}(\Lambda)$ es mediante la ortogonalización Gran-Schmidt.
+El determinante es invariante, es decir, no depende de la elección de base. Una forma de computar $\text{det}(\Lambda)$ es mediante la ortogonalización Gran-Schmidt. Sea $\mathbf B^* = [\mathbf b_1^*, \dots, \mathbf b_n^*]$ la matriz de vectores ortogonalizados de una base $\mathbf B$.
+
+\[
+\det(\Lambda) = \prod_{i = 1}^n ||\mathbf b_i^*||
+\]
+
+Si $\latt = \Lambda$ es de rango completo entonces $\det(\Lambda) = |\det(\mathbf B)|$.
 
 \end{frame}
 
@@ -326,12 +322,17 @@ A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad
     \begin{algorithmic}
     \State \textbf{Entrada:} Reticulado con base \textbf{b$_1$, $\dots$, b$_n$} $\in \mathbb{Z}^n$
     \State \textbf{Salida:} $\delta$-LLL base reducida de $\mathcal{L}$
-    \State \textbf{Comienzo:} computar Gram-Schmidt $b_1^*$, $\dots$, $b_n^*$
+    \State \textbf{Comienzo:} computar Gram-Schmidt \textbf{b}$_1^*$, $\dots$, \textbf{b}$_n^*$
+    \State \textbf{Paso de Reducción:}
     \For{$i=2$ to $n$} 
         \For{$j = i − 1$ to $1$}
             \State $b_i \gets b_i - c_{ij}b_ji$, donde $c_{ij} = \frac{\langle b_i, b^*_j \rangle}{\langle b^*_j,b^*_j \rangle}$ 
         \EndFor
-    \EndFor 
+    \EndFor
+    \State \textbf{Paso Swap:} \Comment{Verificar condición de Lovász}
+    \If{$\exists i$ tal que $\delta ||b^*_i||^2 > ||\mu_{i+1, i}b^*_i + b^*_{i+1}||^2$}
+        \State $b_i\leftrightarrow b_{i+1}$
+    \EndIf
     \end{algorithmic}
 \end{frame}
 
