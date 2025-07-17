@@ -172,7 +172,19 @@ El determinante es invariante, es decir, no depende de la elección de base. Una
     
         En otras palabras, el $i$-ésimo mínimo $\lambda_i$ corresponde al radio de la esfera abierta más pequeña, centrada en el origen, que contiene al menos $i$ vectores linealmente independientes.  
     \end{definition}
-\end{frame} 
+\end{frame}
+
+\begin{frame}{Mínimos sucesivos}
+    Los mínimos sucesivos pueden definirse respecto a cualquier tipo de norma, siempre y cuando cumpla ciertas propiedades (definida positiva, ponderación por escalar y desigualdad triangular). Algunos ejemplos son:
+    \vspace{10pt}
+    \begin{itemize}
+        \item norma $\ell_1$: \quad ${\Vert\mathbf{x}\Vert}_1 = \sum |x_i|$
+        \vspace{7pt}
+        \item norma $\ell_2$: \quad ${\Vert\mathbf{x}\Vert}_2 = \sqrt{\sum x^2_i} = \sqrt{\langle \mathbf{x},\mathbf{x} \rangle}$
+        \vspace{7pt}
+        \item norma $\ell_{\infty}$: \quad ${\Vert\mathbf{x}\Vert}_{\infty} = \displaystyle \lim_{p \to \infty} {\Vert\mathbf{x}\Vert}_p = \max_{i=1}^n |\mathbf{x}_i|$
+    \end{itemize}
+\end{frame}
 
 \subsection{Teoremas de Minkowski}
 
