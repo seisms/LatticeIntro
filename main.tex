@@ -179,7 +179,7 @@ El determinante es invariante, es decir, no depende de la elección de base. Una
 \begin{figure}
     \centering
     \includesvg[width=0.55\linewidth]{figures/minima.svg}
-    \caption{Segunda mínima.}
+    \caption{Segunda mínimo.}
     \label{fig:enter-label}
 \end{figure}
 }
@@ -240,27 +240,52 @@ El problema de encontrar el vector más cercano se puede abordar mediante las si
 \end{frame}
 
 \begin{frame}{El problema del vector más cercano}
-\textbf{Observación}: Dada una máquina que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.\\
-\vspace{1em}
-Para esto, suponemos que tenemos un algoritmo $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) \leq r$ o $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) < r$, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.\\
-\vspace{1em}
+\begin{remark}
+Dada una máquina que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.
+\end{remark}
+
+Para esto, suponemos que tenemos un algoritmo $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) \leq r$ o $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) < r$, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.
+
 De manera similar, dado un algoritmo de optimización que computa $\text{dist}(\mathbf{t},\latt)$, se puede resolver el problema de decisión $(\mathbf{B}, \mathbf{t}, r)$ comparando $\text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B}))$ con $r$.
 \end{frame}
 
 \begin{frame}{El problema del vector más cercano}
 \begin{definition}[CVP Aproximado]
-Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in \ZZ^n$) de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \gamma \cdot \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.\\
+Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in \ZZ^n$) de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \gamma \cdot \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.
 \end{definition}
-\vspace{1em}
-En esta versión de aproximación, solo es necesario encontrar $\|\mathbf{Bx}-\mathbf{t}\|$; es decir, un valor $d$ tal que $\text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B})) \leq d < \gamma \cdot \text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B}))$.\\
-\vspace{1em}
+
+En esta versión de aproximación, solo es necesario encontrar $\|\mathbf{Bx}-\mathbf{t}\|$; es decir, un valor $d$ tal que $\text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B})) \leq d < \gamma \cdot \text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B}))$.
+
 A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad posiblemente) para CVP utilizan factores de aproximación polinomiales $\gamma(n) = n^c$ (para algún $c$ independiente del rango $n$) en el peor caso.
+
 \end{frame}
+
+\begin{frame}{Algoritmo LLL}
+    \begin{algorithm}
+    \caption{An algorithm with caption}\label{alg:cap}
+    \begin{algorithmic}
+    \Require $n \geq 0$
+    \Ensure $y = x^n$
+    \State $y \gets 1$
+    \State $X \gets x$
+    \State $N \gets n$
+    \While{$N \neq 0$}
+    \If{$N$ is even}
+        \State $X \gets X \times X$
+        \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
+    \ElsIf{$N$ is odd}
+        \State $y \gets y \times X$
+        \State $N \gets N - 1$
+    \EndIf
+    \EndWhile
+    \end{algorithmic}
+    \end{algorithm}
+\end{frame}
+
 
 \begin{frame}
     \begin{center}
         {\huge \bf Preguntas}
     \end{center}
 \end{frame}
-
 \end{document}
