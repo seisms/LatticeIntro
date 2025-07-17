@@ -230,6 +230,23 @@ Por otro lado, $\lambda_1(\Lambda)$ es el largo del vector distinto de cero más
 
 \section{Algunos problemas computacionales de reticulados}
 
+\subsection{SVP: El problema del vector más corto}
+
+\begin{frame}{El problema del vector más corto}
+
+El teorema de Minkowski solo nos dice que un vector corto no nulo existe en el reticulado, pero no nos entrega un método eficiente para encontrar vectores con largos acotados por $\sqrt{n}\det(\mathbf{\latt})^{1/n}$.
+
+\begin{definition}[\textit{Shortest Vector Problem}, SVP]
+Dada una base $\mathbf{B}\in \ZZ^{m\times n}$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in\ZZ^n\setminus\{\mathbf{0}\}$) tal que $\|\mathbf{Bx}\| \leq \|\mathbf{By}\|$ para cualquier otro vector $\mathbf{y}\in\ZZ^n\setminus\{\mathbf{0}\}$. 
+\end{definition}
+
+\begin{definition}[SVP Aproximado]
+Dada una base $\mathbf{B}\in \ZZ^{m\times n}$, encontrar el vector no-nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in\ZZ^n\setminus\{\mathbf{0}\}$) tal que $\|\mathbf{Bx}\| \leq \gamma \cdot \|\mathbf{By}\|$ para cualquier otro vector $\mathbf{y}\in\ZZ^n\setminus\{\mathbf{0}\}$. \\
+\end{definition}
+
+En esta versión de optimización, solo es necesario encontrar $\|\mathbf{Bx}\|$; es decir, un valor $d$ tal que $\lambda_1(\mathbf{B}) \leq d < \gamma\lambda_1(\mathbf{B})$.
+\end{frame}
+
 \subsection{SVP}
 \begin{frame}{SVP en dos dimensiones}
     \begin{definition}
@@ -275,7 +292,7 @@ Del algoritmo presentado para la reducción de base en dos dimensiones podemos d
 \end{itemize}
 \end{frame}
 
-\subsection{CVP}
+\subsection{CVP: El problema del vector más cercano}
 
 \begin{frame}{El problema del vector más cercano}
 \begin{definition}[\textit{Closest Vector Problem}, CVP]
