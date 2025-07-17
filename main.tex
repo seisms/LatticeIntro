@@ -176,6 +176,15 @@ El determinante es invariante, es decir, no depende de la elección de base. Una
 }
 
 \only<2>{
+\begin{figure}
+    \centering
+    \includesvg[width=0.55\linewidth]{figures/minima.svg}
+    \caption{Segunda mínimo.}
+    \label{fig:enter-label}
+\end{figure}
+}
+
+\only<3>{
     Los mínimos sucesivos pueden definirse respecto a cualquier tipo de norma, siempre y cuando cumpla ciertas propiedades (definida positiva, ponderación por escalar y desigualdad triangular). Algunos ejemplos son:
     \vspace{10pt}
     \begin{itemize}
@@ -245,18 +254,41 @@ De manera similar, dado un algoritmo de optimización que computa $\text{dist}(\
 
 \begin{frame}{El problema del vector más cercano}
 \begin{definition}[CVP Aproximado]
-Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in \ZZ^n$) de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \gamma \cdot \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.\\
+Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in \ZZ^n$) de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \gamma \cdot \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.
 \end{definition}
 \vspace{1em}
 En esta versión de aproximación, solo es necesario encontrar $\|\mathbf{Bx}-\mathbf{t}\|$; es decir, un valor $d$ tal que $\text{dist}(\mathbf{t},\latt) \leq d < \gamma \cdot \text{dist}(\mathbf{t},\latt)$.\\
 \vspace{1em}
 A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad posiblemente) para CVP utilizan factores de aproximación polinomiales $\gamma(n) = n^c$ (para algún $c$ independiente del rango $n$) en el peor caso.
+
 \end{frame}
+
+\begin{frame}{Algoritmo LLL}
+    \begin{algorithm}
+    \caption{An algorithm with caption}\label{alg:cap}
+    \begin{algorithmic}
+    \Require $n \geq 0$
+    \Ensure $y = x^n$
+    \State $y \gets 1$
+    \State $X \gets x$
+    \State $N \gets n$
+    \While{$N \neq 0$}
+    \If{$N$ is even}
+        \State $X \gets X \times X$
+        \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
+    \ElsIf{$N$ is odd}
+        \State $y \gets y \times X$
+        \State $N \gets N - 1$
+    \EndIf
+    \EndWhile
+    \end{algorithmic}
+    \end{algorithm}
+\end{frame}
+
 
 \begin{frame}
     \begin{center}
         {\huge \bf Preguntas}
     \end{center}
 \end{frame}
-
 \end{document}
