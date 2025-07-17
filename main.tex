@@ -213,34 +213,39 @@ El determinante es invariante, es decir, no depende de la elección de base. Una
 
 \section{Algunos problemas de reticulados en la criptografía}
 \begin{frame}
+\begin{frame}{El problema del vector más cercano}
 \begin{definition}[\textit{Closest Vector Problem}, CVP]
-Dada una base $\mathbf{B} \in \ZZ^{m \times n}$ y un vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x} \in \ZZ^n)$ más cercano a $\mathbf{t}$; es decir, encontrar un vector $\mathbf{x} \in \ZZ^n$ tal que $\|\mathbf{Bx} - \mathbf{t}\| \leq \|\mathbf{By} - \mathbf{t}\|$ para cualquier $\mathbf{y} \in \ZZ^n$.
+Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ más cercano a $\mathbf{t}$; es decir, encontrar un vector $\mathbf{x}\in \ZZ^n$ de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.
 \end{definition}
 
-El problema de encontrar el vector más cercano se puede abordar mediante las siguientes tareas computacionales ($\Lambda = \latt$):
+
+\end{frame}
+
+\begin{frame}{El problema del vector más corto}
+    El problema de encontrar el vector más cercano se puede abordar mediante las siguientes tareas computacionales:\\
+\vspace{1em}
 \begin{itemize}
-    \item \textit{Problema de Búsqueda}: Encontrar un vector no nulo del reticulado $\mathbf{x} \in \Lambda$ tal que $\|\mathbf{x}-\mathbf{t}\|$ sean mínima.
-    \item \textit{Problema de Optimización}: Encontrar el mínimo de $\|\mathbf{x}-\mathbf{t}\|$ sobre $\mathbf{x} \in \Lambda$.
-    \item \textit{Problema de Decisión}: Dado un racional $r>0$, decidir si existe un vector no-nulo $\mathbf{x} \in \Lambda$ tal que $\|\mathbf{x}-\mathbf{t}\| \leq r$.
+    \item \textit{Problema de Búsqueda}: Dado un reticulado entero $\latt$ y un vector objetivo $\mathbf{t}$, encontrar un vector del reticulado $\mathbf{Bx}$ tal que $\|\mathbf{Bx} - \mathbf{t}\|$ sea mínima.
+    \item \textit{Problema de Optimización}: Dado un reticulado entero $\latt$ y un vector objetivo $\mathbf{t}$, computar $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B}))$.
+    \item \textit{Problema de Decisión}: Dado un reticulado entero $\latt$, un vector objetivo $\mathbf{t}$ y un racional $r$, determinar si $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) \leq r$ o $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) < r$.
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-
-\begin{remark}
- La versión de búsqueda del CVP no es sustancialmente más difícil que los otros dos; dado un oráculo que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.   
-\end{remark} 
-
-Para esto, suponemos que tenemos un oráculo de decisión $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\mathrm{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) \leq r$ o no, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base del reticulado $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.
+\begin{frame}{El problema del vector más cercano}
+\textbf{Observación}: Dada una máquina que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.\\
+\vspace{1em}
+Para esto, suponemos que tenemos un algoritmo $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) \leq r$ o $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) < r$, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.\\
+\vspace{1em}
+De manera similar, dado un algoritmo de optimización que computa $\text{dist}(\mathbf{t},\latt)$, se puede resolver el problema de decisión $(\mathbf{B}, \mathbf{t}, r)$ comparando $\text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B}))$ con $r$.
 \end{frame}
 
-\begin{frame}
+\begin{frame}{El problema del vector más cercano}
 \begin{definition}[CVP Aproximado]
-Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in \ZZ^n$) de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \gamma \cdot \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.
+Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in \ZZ^n$) de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \gamma \cdot \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.\\
 \end{definition}
-
-En esta versión de aproximación, solo es necesario encontrar $\|\mathbf{Bx}-\mathbf{t}\|$; es decir, un valor $d$ tal que $\text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B})) \leq d < \gamma \text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B}))$.
-
+\vspace{1em}
+En esta versión de aproximación, solo es necesario encontrar $\|\mathbf{Bx}-\mathbf{t}\|$; es decir, un valor $d$ tal que $\text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B})) \leq d < \gamma \cdot \text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B}))$.\\
+\vspace{1em}
 A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad posiblemente) para CVP utilizan factores de aproximación polinomiales $\gamma(n) = n^c$ (para algún $c$ independiente del rango $n$) en el peor caso.
 \end{frame}
 
