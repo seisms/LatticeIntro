@@ -230,6 +230,50 @@ Por otro lado, $\lambda_1(\Lambda)$ es el largo del vector distinto de cero más
 
 \section{Algunos problemas computacionales de reticulados}
 
+\begin{frame}{SVP en dos dimensiones}
+    \begin{definition}
+        Sea $[\textbf{a},\textbf{b}]$ una base de un reticulado. La base es reducida si
+        \[
+            ||\textbf{a}||,||\textbf{b}|| \leq ||\textbf{a}+\textbf{b}||,||\textbf{a}-\textbf{b}|| \text{.}
+        \]
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\linewidth]{figures/baseReducida.png}
+            \caption{Base reducida en dos dimensiones}
+        \end{figure}
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    \begin{lemma}
+        Considere tres vectores en una linea, $\textbf{x}, \textbf{x}+\textbf{y}, \textbf{x}+\textbf{$\alpha$} \textbf{y}$, donde $\alpha \in (1, \infty)$. Para cualquier norma $||\cdot||$, si $||\textbf{x}|| \leq ||\textbf{x}+\textbf{y}||$ entonces $||\textbf{x}+\textbf{y}|| \leq ||\textbf{a}+\alpha \textbf{y}||$. Además, si $||\textbf{x}||<||\textbf{x}+\textbf{y}||$ entonces $||\textbf{x}+\textbf{y}||<||\textbf{x}+\alpha \textbf{y}||$.
+    \end{lemma}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\linewidth]{figures/lattice_pointsLine.png}
+        \caption{Tres puntos en una línea}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Algoritmo generalizado de Gauss}
+Algoritmo utilizado para reducir la base de un reticulado. 
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\linewidth]{figures/lattice_gaussAlg.png}
+        \caption{Generalización del algoritmo de Gauss}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Algoritmo generalizado de Gauss}
+Del algoritmo presentado para la reducción de base en dos dimensiones podemos decir:
+\begin{itemize}
+    \item El algoritmo es de complejidad $O(n)$.
+    \item El algoritmo es eficiente y exacto para encontrar el vector más corto.
+    \item Es genérico respecto a la norma siempre y cuando esta pueda ser evaluada en tiempo polinomial.
+    \item Se basa en propiedades geométricas del reticulado. 
+\end{itemize}
+\end{frame}
+
 \begin{frame}{El problema del vector más cercano}
 \begin{definition}[\textit{Closest Vector Problem}, CVP]
 Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bv}$ más cercano a $\mathbf{t}$; es decir, encontrar un vector $\mathbf{v}\in \ZZ^n$ de modo que $\|\mathbf{Bv}-\mathbf{t}\| \leq \|\mathbf{Bw}-\mathbf{t}\|$ para cualquier otro $\mathbf{w} \in \ZZ^n$.
