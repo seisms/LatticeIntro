@@ -13,9 +13,7 @@
 \tableofcontents
 \end{frame}
 
-% Hola desde vim!
 \section{Marco teórico}
-% hola soy el matibara XD
 
 % Preliminares acá? Definir la generalización de norma y conjunto
 % abierto? Podría ayudar cuando hablemos de mínimos sucesivos.
@@ -74,7 +72,7 @@ Sean $\mathbf B$ y $\mathbf B'$ dos bases $\RR^{m \times n}$. $\mathbf B$ y $\ma
 \end{theorem}
 }
 \begin{proof}
- \only<1>{$(\impliedby)$ Tenemos que $\mathbf B = \mathbf{B'U}$ y $\det(\mathbf U) = \pm 1 \neq 0$, entonces $\mathbf U$ es invertible por alguna matriz $\mathbf U'$ tal que $\mathbf{UU'} = \mathbf I$. En particular, de esto podemos concluir que $\mathbf{B'} = \mathbf{BU'}$. Sigue inmediatemente que $\latt \subseteq \lattprime$ y $\lattprime \subseteq \latt$. Por lo tanto $\latt = \lattprime$ y ambas bases son equivalentes.}
+ \only<1>{$(\impliedby)$ Tenemos que $\mathbf B = \mathbf{B'U}$ y $\det(\mathbf U) = \pm 1 \neq 0$, entonces $\mathbf U$ es invertible por alguna matriz $\mathbf U'$ tal que $\mathbf{UU'} = \mathbf I$. En particular, de esto podemos concluir que $\mathbf{B'} = \mathbf{BU'}$. Sigue inmediatamente que $\latt \subseteq \lattprime$ y $\lattprime \subseteq \latt$. Por lo tanto $\latt = \lattprime$ y ambas bases son equivalentes.}
 
  \only<2>{$(\implies)$ Si $\mathbf B$ y $\mathbf B'$ son equivalentes entonces generan el mismo reticulado. Es decir, existen $\mathbf M$ y $\mathbf M' \in \ZZ^{n\times n}$  tal que $\mathbf B = \mathbf{B'M'}$ y $\mathbf B' = \mathbf{BM}$.
  \[
@@ -95,6 +93,36 @@ Como $\mathbf M$ y $\mathbf M'$ están compuestas de enteros, $\det(\mathbf M)$ 
 \section{Complejidad}
 
 \section{Algunos problemas de reticulados en la criptografía}
+
+\begin{frame}
+\begin{definition}[\textit{Closest Vector Problem}, CVP]
+Dada una base $\mathbf{B} \in \ZZ^{m \times n}$ y un vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x} \in \ZZ^n)$ más cercano a $\mathbf{t}$; es decir, encontrar un vector $\mathbf{x} \in \ZZ^n$ tal que $\|\mathbf{Bx} - \mathbf{t}\| \leq \|\mathbf{By} - \mathbf{t}\|$ para cualquier $\mathbf{y} \in \ZZ^n$.
+\end{definition}
+
+El problema de encontrar el vector más cercano se puede abordar mediante las siguientes tareas computacionales ($\Lambda = \latt$):
+\begin{itemize}
+    \item \textit{Problema de Búsqueda}: Encontrar un vector no nulo del reticulado $\mathbf{x} \in \Lambda$ tal que $\|\mathbf{x}-\mathbf{t}\|$ sean mínima.
+    \item \textit{Problema de Optimización}: Encontrar el mínimo de $\|\mathbf{x}-\mathbf{t}\|$ sobre $\mathbf{x} \in \Lambda$.
+    \item \textit{Problema de Decisión}: Dado un racional $r>0$, decidir si existe un vector no-nulo $\mathbf{x} \in \Lambda$ tal que $\|\mathbf{x}-\mathbf{t}\| \leq r$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\textbf{Observación}: La versión de búsqueda del CVP no es sustancialmente más difícil que los otros dos; dado un oráculo que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.
+
+Para esto, suponemos que tenemos un oráculo de decisión $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\mathrm{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) \leq r$ o no, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base del reticulado $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.
+\end{frame}
+
+\begin{frame}
+\begin{definition}[CVP Aproximado]
+Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in \ZZ^n$) de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \gamma \cdot \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.
+\end{definition}
+
+En esta versión de aproximación, solo es necesario encontrar $\|\mathbf{Bx}-\mathbf{t}\|$; es decir, un valor $d$ tal que $\text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B})) \leq d < \gamma \text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B}))$.
+
+A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad posiblemente) para CVP utilizan factores de aproximación polinomiales $\gamma(n) = n^c$ (para algún $c$ independiente del rango $n$) en el peor caso.
+    
+\end{frame}
 
 \begin{frame}
     \begin{center}
