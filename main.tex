@@ -160,6 +160,7 @@ El determinante es invariante, es decir, no depende de la elección de base. Una
 
 \subsection{Mínimos sucesivos}
 \begin{frame}{Mínimos sucesivos}
+\only<1>{
     \begin{definition}
         $\mathcal{B}_m(\mathbf{0},r) = \left\{ \mathbf{x} \in \RR^{m}: \Vert \mathbf{x} \Vert < r \right\}$ es la \textbf{esfera abierta} $m$-dimensional de radio $r$ y centrada en $\mathbf{0}$.
     \end{definition}
@@ -172,9 +173,9 @@ El determinante es invariante, es decir, no depende de la elección de base. Una
     
         En otras palabras, el $i$-ésimo mínimo $\lambda_i$ corresponde al radio de la esfera abierta más pequeña, centrada en el origen, que contiene al menos $i$ vectores linealmente independientes.  
     \end{definition}
-\end{frame}
+}
 
-\begin{frame}{Mínimos sucesivos}
+\only<2>{
     Los mínimos sucesivos pueden definirse respecto a cualquier tipo de norma, siempre y cuando cumpla ciertas propiedades (definida positiva, ponderación por escalar y desigualdad triangular). Algunos ejemplos son:
     \vspace{10pt}
     \begin{itemize}
@@ -184,11 +185,31 @@ El determinante es invariante, es decir, no depende de la elección de base. Una
         \vspace{7pt}
         \item norma $\ell_{\infty}$: \quad ${\Vert\mathbf{x}\Vert}_{\infty} = \displaystyle \lim_{p \to \infty} {\Vert\mathbf{x}\Vert}_p = \max_{i=1}^n |\mathbf{x}_i|$
     \end{itemize}
+}
 \end{frame}
 
 \subsection{Teoremas de Minkowski}
+\begin{frame}{Teoremas de Minkowski}
+    \only<1>{
+    \begin{theorem}{Teorema de Blichfeldt:} Para cualquier reticulado $\Lambda$ y para cualquier conjunto medible $S \subseteq span (\Lambda)$, si $S$ tiene un volumen $vol(S) > det(\Lambda)$ entonces existen dos puntos distintivos $z_1, z_2 \in S$ tal que $z_1 - z_2 \in \Lambda$.
+    \end{theorem}
+    \begin{theorem}{Primer Teorema de Minkowski:}
+        Para cualquier reticulado $\Lambda$ de rango $n$ y dado cualquier conjunto convexo y simétrico al origen $S \subset span(\Lambda)$, si $vol(S)> 2^n det(\Lambda)$ entonces $S$ contiene un punto no-nulo $v$ del reticulado tal que $v \in S \cap \Lambda \backslash {0}$  
+    \end{theorem}
+    }
+    \only<2>{
+    \begin{remark}
+        Para cualquier reticulado $\Lambda$ de rango $n$, el largo del vector más corto sin considerar el vector del punto origen es $\lambda_1 < \sqrt{n} \ det(\Lambda)^{1/n}$ 
+    \end{remark}
+    \begin{theorem}{Segundo Teorema de Minkowski:}
+        Para cualquier reticulado $\mathcal{L}(B)$ con rango $n$, los mínimos sucesivos (en norma $\ell_2$) $\lambda_1, \dots, \lambda_n$ satisfacen
+        \[
+            (\prod_{i=1}^{n} \lambda_i)^{1/n} < \sqrt{n} \ det(B)^{1/n}
+        \]
+    \end{theorem}
+    }
+\end{frame}
 
-\section{Complejidad}
 
 \section{Algunos problemas de reticulados en la criptografía}
 \begin{frame}
@@ -205,7 +226,10 @@ El problema de encontrar el vector más cercano se puede abordar mediante las si
 \end{frame}
 
 \begin{frame}
-\textbf{Observación}: La versión de búsqueda del CVP no es sustancialmente más difícil que los otros dos; dado un oráculo que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.
+
+\begin{remark}
+ La versión de búsqueda del CVP no es sustancialmente más difícil que los otros dos; dado un oráculo que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.   
+\end{remark} 
 
 Para esto, suponemos que tenemos un oráculo de decisión $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\mathrm{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) \leq r$ o no, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base del reticulado $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.
 \end{frame}
