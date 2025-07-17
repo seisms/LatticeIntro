@@ -104,7 +104,7 @@ Aquí, {\it discreto} significa que existe una constante real positiva $\lambda$
 
 \begin{frame}{Equivalencia de bases}
 \only<1>{
-La equivalencia de bases de reticulados se puede interpretar de forma geométrica. Defina el paralelepipedo semiabierto de $\mathbf B$ como el conjunto
+La equivalencia de bases de reticulados se puede interpretar de forma geométrica. Defina el paralelepípedo semiabierto de $\mathbf B$ como el conjunto
 
 \[
 \mathcal P(\mathbf B) = \left\{ \mathbf B\mathbf x : 0 \leq x_i < 1\right\}.
@@ -150,7 +150,7 @@ Como $\mathbf M$ y $\mathbf M'$ están compuestas de enteros, $\det(\mathbf M)$ 
 \subsection{Determinantes}
 \begin{frame}{Determinante}
 \begin{definition}
-El determinante de un reticulado $\Lambda = \latt$ es el volumen $n$-dimensional del paralelepipedo semiabierto $\mathcal P(\mathbf B)$.
+El determinante de un reticulado $\Lambda = \latt$ es el volumen $n$-dimensional del paralelepípedo semiabierto $\mathcal P(\mathbf B)$.
 \end{definition}
 
 El determinante es invariante, es decir, no depende de la elección de base. Una forma de computar $\text{det}(\Lambda)$ es mediante la ortogonalización Gran-Schmidt.
@@ -210,13 +210,18 @@ El determinante es invariante, es decir, no depende de la elección de base. Una
     }
 \end{frame}
 
+\section{Algunos problemas computacionales de reticulados}
 
-\section{Algunos problemas de reticulados en la criptografía}
 \begin{frame}{El problema del vector más cercano}
 \begin{definition}[\textit{Closest Vector Problem}, CVP]
-Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ más cercano a $\mathbf{t}$; es decir, encontrar un vector $\mathbf{x}\in \ZZ^n$ de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.
+Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bv}$ más cercano a $\mathbf{t}$; es decir, encontrar un vector $\mathbf{v}\in \ZZ^n$ de modo que $\|\mathbf{Bv}-\mathbf{t}\| \leq \|\mathbf{Bw}-\mathbf{t}\|$ para cualquier otro $\mathbf{w} \in \ZZ^n$.
 \end{definition}
-
+\begin{figure}
+    \centering
+    \includegraphics[width=0.35\linewidth]{figures/The-closest-vector-problem.png}
+    \caption{\textit{Closest Vector Problem}}
+    \label{fig:cvp-figure}
+\end{figure}
 
 \end{frame}
 
@@ -224,18 +229,18 @@ Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \
 El problema de encontrar el vector más cercano se puede abordar mediante las siguientes tareas computacionales:\\
 \vspace{1em}
 \begin{itemize}
-    \item \textit{Problema de Búsqueda}: Dado un reticulado entero $\latt$ y un vector objetivo $\mathbf{t}$, encontrar un vector del reticulado $\mathbf{Bx}$ tal que $\|\mathbf{Bx} - \mathbf{t}\|$ sea mínima.
-    \item \textit{Problema de Optimización}: Dado un reticulado entero $\latt$ y un vector objetivo $\mathbf{t}$, computar $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B}))$.
-    \item \textit{Problema de Decisión}: Dado un reticulado entero $\latt$, un vector objetivo $\mathbf{t}$ y un racional $r$, determinar si $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) \leq r$ o $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) < r$.
+    \item \textit{Problema de Búsqueda}: Dado un reticulado entero $\latt$ y un vector objetivo $\mathbf{t}$, encontrar un vector del reticulado $\mathbf{Bx}$ tal que $\|\mathbf{Bv} - \mathbf{t}\|$ sea mínima.
+    \item \textit{Problema de Optimización}: Dado un reticulado entero $\latt$ y un vector objetivo $\mathbf{t}$, computar $\text{dist}(\mathbf{t}, \latt)$.
+    \item \textit{Problema de Decisión}: Dado un reticulado entero $\latt$, un vector objetivo $\mathbf{t}$ y un racional $r$, determinar si $\text{dist}(\mathbf{t}, \latt \leq r$ o $\text{dist}(\mathbf{t}, \latt < r$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{El problema del vector más cercano}
 \textbf{Observación}: Dada una máquina que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.\\
 \vspace{1em}
-Para esto, suponemos que tenemos un algoritmo $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) \leq r$ o $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) < r$, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.\\
+Para esto, suponemos que tenemos un algoritmo $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\text{dist}(\mathbf{t}, \latt) \leq r$ o $\text{dist}(\mathbf{t}, \latt) < r$, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.\\
 \vspace{1em}
-De manera similar, dado un algoritmo de optimización que computa $\text{dist}(\mathbf{t},\latt)$, se puede resolver el problema de decisión $(\mathbf{B}, \mathbf{t}, r)$ comparando $\text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B}))$ con $r$.
+De manera similar, dado un algoritmo de optimización que computa $\text{dist}(\mathbf{t},\latt)$, se puede resolver el problema de decisión $(\mathbf{B}, \mathbf{t}, r)$ comparando $\text{dist}(\mathbf{t},\latt)$ con $r$.
 \end{frame}
 
 \begin{frame}{El problema del vector más cercano}
@@ -243,7 +248,7 @@ De manera similar, dado un algoritmo de optimización que computa $\text{dist}(\
 Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in \ZZ^n$) de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \gamma \cdot \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.\\
 \end{definition}
 \vspace{1em}
-En esta versión de aproximación, solo es necesario encontrar $\|\mathbf{Bx}-\mathbf{t}\|$; es decir, un valor $d$ tal que $\text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B})) \leq d < \gamma \cdot \text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B}))$.\\
+En esta versión de aproximación, solo es necesario encontrar $\|\mathbf{Bx}-\mathbf{t}\|$; es decir, un valor $d$ tal que $\text{dist}(\mathbf{t},\latt) \leq d < \gamma \cdot \text{dist}(\mathbf{t},\latt)$.\\
 \vspace{1em}
 A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad posiblemente) para CVP utilizan factores de aproximación polinomiales $\gamma(n) = n^c$ (para algún $c$ independiente del rango $n$) en el peor caso.
 \end{frame}
