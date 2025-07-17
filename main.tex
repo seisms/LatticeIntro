@@ -301,8 +301,10 @@ El problema de encontrar el vector más cercano se puede abordar mediante las si
 \end{frame}
 
 \begin{frame}{El problema del vector más cercano}
-\textbf{Observación}: Dada una máquina que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.\\
-\vspace{1em}
+\begin{remark}
+Dada una máquina que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.
+\end{remark}
+
 Para esto, suponemos que tenemos un algoritmo $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\text{dist}(\mathbf{t}, \latt) \leq r$ o $\text{dist}(\mathbf{t}, \latt) < r$, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.\\
 \vspace{1em}
 De manera similar, dado un algoritmo de optimización que computa $\text{dist}(\mathbf{t},\latt)$, se puede resolver el problema de decisión $(\mathbf{B}, \mathbf{t}, r)$ comparando $\text{dist}(\mathbf{t},\latt)$ con $r$.
@@ -324,7 +326,7 @@ A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad
     \begin{algorithmic}
     \State \textbf{Entrada:} Reticulado con base \textbf{b$_1$, $\dots$, b$_n$} $\in \mathbb{Z}^n$
     \State \textbf{Salida:} $\delta$-LLL base reducida de $\mathcal{L}$
-    \State \textbf{Comienzo:} computar la ortogonalización Gram-Schmidt
+    \State \textbf{Comienzo:} computar la ortogonalización Gram-Schmidt $b_1^*, \dots, \$
     \For{$i=2$ to $n$} 
         \For{$j = i − 1$ to $1$}
             \State $b_i \gets b_i - c_{ij}b_ji$, donde $c_{ij} = \frac{\langle b_i, b^*_j \rangle}{\langle b^*_j,b^*_j \rangle}$ 
@@ -332,7 +334,6 @@ A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad
     \EndFor 
     \end{algorithmic}
 \end{frame}
-
 
 \begin{frame}
     \begin{center}
