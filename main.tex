@@ -24,8 +24,6 @@ A menos que sea especificado, la norma $||\cdot ||: \RR^n \to \RR$ denota la nor
 \end{frame}
 \section{Marco teórico}
 
-
-
 \subsection{Definiciones básicas}
 % Por ahora estoy poniendo las cosas nomas. De ahí les podemos poner titulo
 % a los frames o q se yo, refinar la presentacion etc.
@@ -104,7 +102,7 @@ Aquí, {\it discreto} significa que existe una constante real positiva $\lambda$
 
 \begin{frame}{Equivalencia de bases}
 \only<1>{
-La equivalencia de bases de reticulados se puede interpretar de forma geométrica. Defina el paralelepipedo semiabierto de $\mathbf B$ como el conjunto
+La equivalencia de bases de reticulados se puede interpretar de forma geométrica. Defina el paralelepípedo semiabierto de $\mathbf B$ como el conjunto
 
 \[
 \mathcal P(\mathbf B) = \left\{ \mathbf B\mathbf x : 0 \leq x_i < 1\right\}.
@@ -150,7 +148,7 @@ Como $\mathbf M$ y $\mathbf M'$ están compuestas de enteros, $\det(\mathbf M)$ 
 \subsection{Determinantes}
 \begin{frame}{Determinante}
 \begin{definition}
-El determinante de un reticulado $\Lambda = \latt$ es el volumen $n$-dimensional del paralelepipedo semiabierto $\mathcal P(\mathbf B)$.
+El determinante de un reticulado $\Lambda = \latt$ es el volumen $n$-dimensional del paralelepípedo semiabierto $\mathcal P(\mathbf B)$.
 \end{definition}
 
 El determinante es invariante, es decir, no depende de la elección de base. Una forma de computar $\text{det}(\Lambda)$ es mediante la ortogonalización Gran-Schmidt.
@@ -195,6 +193,17 @@ El determinante es invariante, es decir, no depende de la elección de base. Una
         \item norma $\ell_{\infty}$: \quad ${\Vert\mathbf{x}\Vert}_{\infty} = \displaystyle \lim_{p \to \infty} {\Vert\mathbf{x}\Vert}_p = \max_{i=1}^n |\mathbf{x}_i|$
     \end{itemize}
 }
+
+\only<4>{
+\begin{remark}
+    Ya que $\Lambda \leq \RR^m$, siempre existen vectores que cumplen la sucesión mínima, es decir, existen $\mathbf b_1, \dots, \mathbf b_n$ L.I. en $\Lambda$ tal que $||\mathbf b_i|| = \lambda_i$ para todo $i = 1,\dots,n$. Esto implica que el ínfimo de la definición de $\lambda_i(\Lambda)$ es un mínimo si se reemplaza $\mathcal B_m(\mathbf 0, r)$ por la esfera {\it cerrada} $\overline{\mathcal B}(\mathbf 0, r)$.
+\end{remark}
+
+Por otro lado, $\lambda_1(\Lambda)$ es el largo del vector distinto de cero más corto del reticulado, y es igual a la distancia más corta entre dos puntos distintos del reticulado. Formalmente:
+\[
+\lambda_1(\Lambda) = \min_{\mathbf x \neq \mathbf y \in \Lambda} || \mathbf x - \mathbf y|| = \min_{\mathbf x \in \Lambda \backslash \left\{\mathbf 0\right\}} ||\mathbf x||
+\]
+}
 \end{frame}
 
 \subsection{Teoremas de Minkowski}
@@ -219,13 +228,62 @@ El determinante es invariante, es decir, no depende de la elección de base. Una
     }
 \end{frame}
 
+\section{Algunos problemas computacionales de reticulados}
 
-\section{Algunos problemas de reticulados en la criptografía}
+\begin{frame}{SVP en dos dimensiones}
+    \begin{definition}
+        Sea $[\textbf{a},\textbf{b}]$ una base de un reticulado. La base es reducida si
+        \[
+            ||\textbf{a}||,||\textbf{b}|| \leq ||\textbf{a}+\textbf{b}||,||\textbf{a}-\textbf{b}|| \text{.}
+        \]
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.5\linewidth]{figures/baseReducida.png}
+            \caption{Base reducida en dos dimensiones}
+        \end{figure}
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    \begin{lemma}
+        Considere tres vectores en una linea, $\textbf{x}, \textbf{x}+\textbf{y}, \textbf{x}+\textbf{$\alpha$} \textbf{y}$, donde $\alpha \in (1, \infty)$. Para cualquier norma $||\cdot||$, si $||\textbf{x}|| \leq ||\textbf{x}+\textbf{y}||$ entonces $||\textbf{x}+\textbf{y}|| \leq ||\textbf{a}+\alpha \textbf{y}||$. Además, si $||\textbf{x}||<||\textbf{x}+\textbf{y}||$ entonces $||\textbf{x}+\textbf{y}||<||\textbf{x}+\alpha \textbf{y}||$.
+    \end{lemma}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.45\linewidth]{figures/lattice_pointsLine.png}
+        \caption{Tres puntos en una línea}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Algoritmo generalizado de Gauss}
+Algoritmo utilizado para reducir la base de un reticulado. 
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\linewidth]{figures/lattice_gaussAlg.png}
+        \caption{Generalización del algoritmo de Gauss}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Algoritmo generalizado de Gauss}
+Del algoritmo presentado para la reducción de base en dos dimensiones podemos decir:
+\begin{itemize}
+    \item El algoritmo es de complejidad $O(n)$.
+    \item El algoritmo es eficiente y exacto para encontrar el vector más corto.
+    \item Es genérico respecto a la norma siempre y cuando esta pueda ser evaluada en tiempo polinomial.
+    \item Se basa en propiedades geométricas del reticulado. 
+\end{itemize}
+\end{frame}
+
 \begin{frame}{El problema del vector más cercano}
 \begin{definition}[\textit{Closest Vector Problem}, CVP]
-Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ más cercano a $\mathbf{t}$; es decir, encontrar un vector $\mathbf{x}\in \ZZ^n$ de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.
+Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bv}$ más cercano a $\mathbf{t}$; es decir, encontrar un vector $\mathbf{v}\in \ZZ^n$ de modo que $\|\mathbf{Bv}-\mathbf{t}\| \leq \|\mathbf{Bw}-\mathbf{t}\|$ para cualquier otro $\mathbf{w} \in \ZZ^n$.
 \end{definition}
-
+\begin{figure}
+    \centering
+    \includegraphics[width=0.35\linewidth]{figures/The-closest-vector-problem.png}
+    \caption{\textit{Closest Vector Problem}}
+    \label{fig:cvp-figure}
+\end{figure}
 
 \end{frame}
 
@@ -234,52 +292,42 @@ El problema de encontrar el vector más cercano se puede abordar mediante las si
 \vspace{1em}
 \begin{itemize}
     \item \textit{Problema de Búsqueda}: Dado un reticulado entero $\latt$ y un vector objetivo $\mathbf{t}$, encontrar un vector del reticulado $\mathbf{Bx}$ tal que $\|\mathbf{Bx} - \mathbf{t}\|$ sea mínima.
-    \item \textit{Problema de Optimización}: Dado un reticulado entero $\latt$ y un vector objetivo $\mathbf{t}$, computar $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B}))$.
-    \item \textit{Problema de Decisión}: Dado un reticulado entero $\latt$, un vector objetivo $\mathbf{t}$ y un racional $r$, determinar si $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) \leq r$ o $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) < r$.
+    \item \textit{Problema de Optimización}: Dado un reticulado entero $\latt$ y un vector objetivo $\mathbf{t}$, computar $\text{dist}(\mathbf{t}, \latt)$.
+    \item \textit{Problema de Decisión}: Dado un reticulado entero $\latt$, un vector objetivo $\mathbf{t}$ y un racional $r$, determinar si $\text{dist}(\mathbf{t}, \latt) \leq r$ o $\text{dist}(\mathbf{t}, \latt) < r$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}{El problema del vector más cercano}
-\begin{remark}
-Dada una máquina que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.
-\end{remark}
-
-Para esto, suponemos que tenemos un algoritmo $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) \leq r$ o $\text{dist}(\mathbf{t}, \mathcal{L}(\mathbf{B})) < r$, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.
-
-De manera similar, dado un algoritmo de optimización que computa $\text{dist}(\mathbf{t},\latt)$, se puede resolver el problema de decisión $(\mathbf{B}, \mathbf{t}, r)$ comparando $\text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B}))$ con $r$.
+\textbf{Observación}: Dada una máquina que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.\\
+\vspace{1em}
+Para esto, suponemos que tenemos un algoritmo $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\text{dist}(\mathbf{t}, \latt) \leq r$ o $\text{dist}(\mathbf{t}, \latt) < r$, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.\\
+\vspace{1em}
+De manera similar, dado un algoritmo de optimización que computa $\text{dist}(\mathbf{t},\latt)$, se puede resolver el problema de decisión $(\mathbf{B}, \mathbf{t}, r)$ comparando $\text{dist}(\mathbf{t},\latt)$ con $r$.
 \end{frame}
 
 \begin{frame}{El problema del vector más cercano}
 \begin{definition}[CVP Aproximado]
 Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in \ZZ^n$) de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \gamma \cdot \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.
 \end{definition}
-
-En esta versión de aproximación, solo es necesario encontrar $\|\mathbf{Bx}-\mathbf{t}\|$; es decir, un valor $d$ tal que $\text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B})) \leq d < \gamma \cdot \text{dist}(\mathbf{t},\mathcal{L}(\mathbf{B}))$.
-
+\vspace{1em}
+En esta versión de aproximación, solo es necesario encontrar $\|\mathbf{Bx}-\mathbf{t}\|$; es decir, un valor $d$ tal que $\text{dist}(\mathbf{t},\latt) \leq d < \gamma \cdot \text{dist}(\mathbf{t},\latt)$.\\
+\vspace{1em}
 A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad posiblemente) para CVP utilizan factores de aproximación polinomiales $\gamma(n) = n^c$ (para algún $c$ independiente del rango $n$) en el peor caso.
 
 \end{frame}
 
+\subsection{LLL}
 \begin{frame}{Algoritmo LLL}
-    \begin{algorithm}
-    \caption{An algorithm with caption}\label{alg:cap}
     \begin{algorithmic}
-    \Require $n \geq 0$
-    \Ensure $y = x^n$
-    \State $y \gets 1$
-    \State $X \gets x$
-    \State $N \gets n$
-    \While{$N \neq 0$}
-    \If{$N$ is even}
-        \State $X \gets X \times X$
-        \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
-    \ElsIf{$N$ is odd}
-        \State $y \gets y \times X$
-        \State $N \gets N - 1$
-    \EndIf
-    \EndWhile
+    \State \textbf{Entrada:} Reticulado con base \textbf{b$_1$, $\dots$, b$_n$} $\in \mathbb{Z}^n$
+    \State \textbf{Salida:} $\delta$-LLL base reducida de $\mathcal{L}$
+    \State $i \gets 10$
+    \For{$i=2$ to $n$} 
+        \For{$j = i − 1$ to $1$}
+            \State $b_i \gets b_i - c_{ij}b_i$ 
+        \EndFor
+    \EndFor 
     \end{algorithmic}
-    \end{algorithm}
 \end{frame}
 
 
@@ -289,3 +337,4 @@ A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad
     \end{center}
 \end{frame}
 \end{document}
+
