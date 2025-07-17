@@ -316,14 +316,15 @@ A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad
 
 \end{frame}
 
+\subsection{LLL}
 \begin{frame}{Algoritmo LLL}
     \begin{algorithmic}
     \State \textbf{Entrada:} Reticulado con base \textbf{b$_1$, $\dots$, b$_n$} $\in \mathbb{Z}^n$
-    \State \textbf{Salida:} $\delta$-LLL base reducida de \mathcal{L}
+    \State \textbf{Salida:} $\delta$-LLL base reducida de $\mathcal{L}$
     \State $i \gets 10$
     \For{$i=2$ to $n$} 
         \For{$j = i − 1$ to $1$}
-            \State $b_i \gets b_i - c_{ij}b_$ 
+            \State $b_i \gets b_i - c_{ij}b_i$ 
         \EndFor
     \EndFor 
     \end{algorithmic}
