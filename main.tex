@@ -236,7 +236,7 @@ Dada una base $\mathbf{B}\in \ZZ^{m\times n}$, encontrar el vector no nulo del r
 \end{definition}
 
 \begin{definition}[SVP Aproximado]
-Dada una base $\mathbf{B}\in \ZZ^{m\times n}$, encontrar el vector no-nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in\ZZ^n\setminus\{\mathbf{0}\}$) tal que $\|\mathbf{Bx}\| \leq \gamma \cdot \|\mathbf{By}\|$ para cualquier otro vector $\mathbf{y}\in\ZZ^n\setminus\{\mathbf{0}\}$. \\
+Dada una base $\mathbf{B}\in \ZZ^{m\times n}$, encontrar el vector no-nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in\ZZ^n\setminus\{\mathbf{0}\}$) tal que $\|\mathbf{Bx}\| \leq \gamma \cdot \|\mathbf{By}\|$ para cualquier otro vector $\mathbf{y}\in\ZZ^n\setminus\{\mathbf{0}\}$.
 \end{definition}
 
 En esta versión de optimización, solo es necesario encontrar $\|\mathbf{Bx}\|$; es decir, un valor $d$ tal que $\lambda_1(\mathbf{B}) \leq d < \gamma\lambda_1(\mathbf{B})$.
@@ -302,8 +302,8 @@ Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \
 \end{frame}
 
 \begin{frame}{El problema del vector más cercano}
-El problema de encontrar el vector más cercano se puede abordar mediante las siguientes tareas computacionales:\\
-\vspace{1em}
+El problema de encontrar el vector más cercano se puede abordar mediante las siguientes tareas computacionales:
+
 \begin{itemize}
     \item \textit{Problema de Búsqueda}: Dado un reticulado entero $\latt$ y un vector objetivo $\mathbf{t}$, encontrar un vector del reticulado $\mathbf{Bx}$ tal que $\|\mathbf{Bx} - \mathbf{t}\|$ sea mínima.
     \item \textit{Problema de Optimización}: Dado un reticulado entero $\latt$ y un vector objetivo $\mathbf{t}$, computar $\text{dist}(\mathbf{t}, \latt)$.
@@ -316,8 +316,8 @@ El problema de encontrar el vector más cercano se puede abordar mediante las si
 Dada una máquina que resuelve el problema de decisión (NP-completo), se puede resolver el problema de búsqueda en tiempo polinomial.
 \end{remark}
 
-Para esto, suponemos que tenemos un algoritmo $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\text{dist}(\mathbf{t}, \latt) \leq r$ o $\text{dist}(\mathbf{t}, \latt) < r$, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.\\
-\vspace{1em}
+Para esto, suponemos que tenemos un algoritmo $\mathcal{A}$ que, para una entrada $(\mathbf{B},\mathbf{t},r)$, decide si $\text{dist}(\mathbf{t}, \latt) \leq r$ o $\text{dist}(\mathbf{t}, \latt) < r$, y lo utilizamos para encontrar de manera eficiente un punto $\mathbf{Bx}$ del reticulado más cercano a $\mathbf{t}$, para una base $\mathbf{B}$ y un vector objetivo $\mathbf{t}$ de entrada.
+
 De manera similar, dado un algoritmo de optimización que computa $\text{dist}(\mathbf{t},\latt)$, se puede resolver el problema de decisión $(\mathbf{B}, \mathbf{t}, r)$ comparando $\text{dist}(\mathbf{t},\latt)$ con $r$.
 \end{frame}
 
@@ -325,9 +325,8 @@ De manera similar, dado un algoritmo de optimización que computa $\text{dist}(\
 \begin{definition}[CVP Aproximado]
 Dada una base $\mathbf{B}\in \ZZ^{m\times n}$ y un vector objetivo $\mathbf{t} \in \ZZ^m$, encontrar el vector no nulo del reticulado $\mathbf{Bx}$ (con $\mathbf{x}\in \ZZ^n$) de modo que $\|\mathbf{Bx}-\mathbf{t}\| \leq \gamma \cdot \|\mathbf{By}-\mathbf{t}\|$ para cualquier otro $\mathbf{y} \in \ZZ^n$.
 \end{definition}
-\vspace{1em}
-En esta versión de aproximación, solo es necesario encontrar $\|\mathbf{Bx}-\mathbf{t}\|$; es decir, un valor $d$ tal que $\text{dist}(\mathbf{t},\latt) \leq d < \gamma \cdot \text{dist}(\mathbf{t},\latt)$.\\
-\vspace{1em}
+
+En esta versión de aproximación, solo es necesario encontrar $\|\mathbf{Bx}-\mathbf{t}\|$; es decir, un valor $d$ tal que $\text{dist}(\mathbf{t},\latt) \leq d < \gamma \cdot \text{dist}(\mathbf{t},\latt)$.
 A la fecha, los algoritmos de aproximación más eficientes (los de aleatoriedad posiblemente) para CVP utilizan factores de aproximación polinomiales $\gamma(n) = n^c$ (para algún $c$ independiente del rango $n$) en el peor caso.
 
 \end{frame}
